@@ -1,5 +1,10 @@
 package com.github.niefy.modules.wx.service;
 
+import cn.hutool.core.io.FileUtil;
+import cn.hutool.http.HttpUtil;
+import me.chanjar.weixin.common.error.WxErrorException;
+import me.chanjar.weixin.mp.api.WxMpService;
+import me.chanjar.weixin.mp.bean.material.WxMediaImgUploadResult;
 import me.chanjar.weixin.mp.bean.template.WxMpTemplateData;
 import me.chanjar.weixin.mp.bean.template.WxMpTemplateMessage;
 import me.chanjar.weixin.mp.util.WxMpConfigStorageHolder;
@@ -17,6 +22,11 @@ import java.util.List;
 class TemplateMsgServiceTest {
     @Autowired
     TemplateMsgService templateMsgService;
+
+    @Autowired
+    WxMpService wxMpService;
+
+
 
     /**
      * 发送模板消息给用户
@@ -38,5 +48,14 @@ class TemplateMsgServiceTest {
             .data(data)
             .build();
         templateMsgService.sendTemplateMsg(wxMpTemplateMessage,appid);
+    }
+
+    @Test
+    public void  testDownImgFromURL() throws WxErrorException {
+        byte[] images = HttpUtil.downloadBytes("http://fc.jxncczx.com/t2/static/O1CN01SpleKe27KNB5jQbEg_!!109342.jpg");
+
+
+        WxMediaImgUploadResult wxMediaImgUploadResult = wxMpService.getMaterialService().mediaImgUpload(FileUtil.writeBytes(images, "aaaa.jpg"));
+        System.out.println(wxMediaImgUploadResult);
     }
 }

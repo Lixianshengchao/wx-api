@@ -29,7 +29,7 @@
 		<swagger.version>3.0.0</swagger.version>
 		<fastjson.version>2.0.28</fastjson.version>
 		<lombok.version>1.18.22</lombok.version>
-		<weixin-java.version>4.4.0</weixin-java.version>
+		<weixin-java.version>4.5.0</weixin-java.version>
 	</properties>
 
 	<dependencies>
@@ -55,6 +55,13 @@
 			<artifactId>weixin-java-mp</artifactId>
 			<version>${weixin-java.version}</version>
 		</dependency>
+
+		<dependency>
+			<groupId>cn.hutool</groupId>
+			<artifactId>hutool-all</artifactId>
+			<version>5.8.16</version>
+		</dependency>
+
 		<dependency>
 			<groupId>com.baomidou</groupId>
 			<artifactId>mybatis-plus-boot-starter</artifactId>
